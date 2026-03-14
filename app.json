@@ -24,6 +24,13 @@
     "web": {
       "favicon": "./assets/images/adaptive-icon.png"
     },
-    "plugins": ["expo-sqlite"]
+    "plugins": [
+      "expo-sqlite"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "2e26a8d6-165e-4b4f-8051-05a44a8f424b"
+      }
+    }
   }
 }
