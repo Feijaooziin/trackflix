@@ -5,9 +5,12 @@ import ProgressBar from "@/components/ProgressBar";
 import { spacing } from "@/theme/spacing";
 import { typography } from "@/theme/typography";
 import { useTheme } from "@/theme/useTheme";
+import { useNavigation } from "@react-navigation/native";
+import FAB from "@/components/FAB";
 
 export default function TestScreen() {
   const { theme } = useTheme();
+  const navigation = useNavigation();
 
   const continueWatching = [
     {
@@ -92,6 +95,7 @@ export default function TestScreen() {
           ))}
         </View>
       </ScrollView>
+      <FAB onPress={() => navigation.navigate("Adicionar" as never)} />
     </Container>
   );
 }
