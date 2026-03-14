@@ -1,21 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import Navigation from "./src/navigation";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={{ fontWeight: 700, fontSize: 32 }}>Track</Text>
-      <Text style={{ color: "red", fontWeight: 800, fontSize: 36 }}>Flix</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <Navigation />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
