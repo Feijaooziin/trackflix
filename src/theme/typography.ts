@@ -1,4 +1,6 @@
-export const typography = {
+import { TextStyle } from "react-native";
+
+export const typography: Record<string, TextStyle> = {
   titleLarge: {
     fontSize: 28,
     fontWeight: "700",
