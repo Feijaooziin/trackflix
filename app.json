@@ -4,10 +4,10 @@
     "slug": "trackflix",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "@/assets/adaptive-icon.png",
+    "icon": "./src/assets/adaptive-icon.png",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "@/assets/SPL.png",
+      "image": "./src/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#050406"
     },
@@ -17,7 +17,7 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#050406",
-        "foregroundImage": "@/assets/adaptive-icon.png"
+        "foregroundImage": "./src/assets/adaptive-icon.png"
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.feijaoozin.trackflix"
