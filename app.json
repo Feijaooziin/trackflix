@@ -4,10 +4,10 @@
     "slug": "trackflix",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/adaptive-icon.png",
+    "icon": "./assets/adaptive-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/SPL.png",
+      "image": "./assets/SPL.png",
       "resizeMode": "contain",
       "backgroundColor": "#050406"
     },
@@ -17,17 +17,15 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#050406",
-        "foregroundImage": "./assets/images/adaptive-icon.png"
+        "foregroundImage": "./assets/adaptive-icon.png"
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.feijaoozin.trackflix"
     },
     "web": {
-      "favicon": "./assets/images/adaptive-icon.png"
+      "favicon": ""
     },
-    "plugins": [
-      "expo-sqlite"
-    ],
+    "plugins": ["expo-sqlite"],
     "extra": {
       "eas": {
         "projectId": "2e26a8d6-165e-4b4f-8051-05a44a8f424b"
