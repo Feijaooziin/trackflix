@@ -20,6 +20,12 @@ export async function initDatabase() {
       );
     `);
 
+    const tables = await db.getAllAsync(
+      "SELECT name FROM sqlite_master WHERE type='table';",
+    );
+
+    console.log("📦 Tables:", tables);
+
     console.log("✅ Database initialized");
   } catch (error) {
     console.error("❌ Database initialization error:", error);
