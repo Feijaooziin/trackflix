@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import TestScreen from "@/screens/testScreen";
+import TestScreen from "@/screens/TestScreen";
 import HomeScreen from "@/screens/HomeScreen";
 import WatchingScreen from "@/screens/WatchingScreen";
 import WatchedScreen from "@/screens/WatchedScreen";
