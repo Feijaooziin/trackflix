@@ -12,36 +12,50 @@ export default function HomeScreen() {
   const continueWatching = [
     {
       id: "1",
-      title: "Breaking Bad",
-      poster: "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
-      progress: 60,
+      title: "Scott Pilgrim Takes Off",
+      poster:
+        "https://image.tmdb.org/t/p/original/rsYIfv87omjFZlVoKqzXZrEyk2k.jpg",
+      progress: 45,
     },
     {
       id: "2",
+      title: "Um Cabra Bom de Bola",
+      poster:
+        "https://image.tmdb.org/t/p/original/x0SRTrltSJi1iQiIAUpyvkxnr41.jpg",
+      progress: 90,
+    },
+    {
+      id: "3",
       title: "Stranger Things",
       poster: "https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg",
-      progress: 35,
+      progress: 15,
     },
   ];
 
   const posters = [
     {
       id: "1",
+      title: "Scott Pilgrim vs. the World",
+      poster:
+        "https://image.tmdb.org/t/p/original/gBfeXTFkFXD9ts61NZ4oNjJelRN.jpg",
+    },
+    {
+      id: "2",
       title: "The Batman",
       poster: "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg",
     },
     {
-      id: "2",
+      id: "3",
       title: "Interstellar",
       poster: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
     },
     {
-      id: "3",
+      id: "4",
       title: "Dune",
       poster: "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
     },
     {
-      id: "4",
+      id: "5",
       title: "Avatar",
       poster: "https://image.tmdb.org/t/p/w500/jRXYjXNq0Cs2TcJjLkki24MLp7u.jpg",
     },
