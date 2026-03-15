@@ -42,15 +42,23 @@ export default function AddContentScreen() {
   async function handleSave() {
     if (!selected) return;
 
+    // Detecta se é série ou filme
+    const isSeries = !!selected.season_number || !!selected.episode_number;
+
     await addContent({
       title: selected.title || selected.name,
-      type: "movie",
+      type: isSeries ? "series" : "movie",
       platform: platform,
       poster: getPosterUrl(selected.poster_path),
       progress: 0,
       status: "watching",
+      season: isSeries ? (selected.season_number ?? null) : null,
+      episode: isSeries ? (selected.episode_number ?? null) : null,
+      duration: selected.runtime ?? selected.episode_runtime ?? null,
+      rating: selected.vote_average ?? null,
     });
 
+    // Limpa estado da busca
     setQuery("");
     setResults([]);
     setSelected(null);

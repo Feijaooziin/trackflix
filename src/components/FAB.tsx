@@ -10,7 +10,7 @@ interface FABProps {
 export default function FAB({ onPress }: FABProps) {
   return (
     <TouchableOpacity style={styles.fab} onPress={onPress}>
-      <Ionicons name="add" size={32} color="#fff" />
+      <Ionicons name="add" size={32} color="#fff" set/>
     </TouchableOpacity>
   );
 }
@@ -20,16 +20,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 30,
     right: 20,
-
     width: 60,
     height: 60,
     borderRadius: 30,
-
     backgroundColor: colors.primary,
-
     justifyContent: "center",
     alignItems: "center",
-
     ...shadows.medium,
   },
 });

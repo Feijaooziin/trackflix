@@ -8,7 +8,7 @@ export async function addContent(content: Content) {
     `
     INSERT INTO contents
     (title, type, platform, season, episode, duration, progress, status, rating, poster)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATETIME('now'), DATETIME('now')cc)
     `,
     [
       content.title,
@@ -42,7 +42,7 @@ export async function updateProgress(id: number, progress: number) {
   await db.runAsync(
     `
     UPDATE contents
-    SET progress = ?
+    SET progress = ?, updated_at = DATETIME('now')
     WHERE id = ?
     `,
     [progress, id],
@@ -72,4 +72,9 @@ export async function markAsWatched(id: number) {
     `,
     [id],
   );
+}
+
+export async function drop() {
+  const db = await getDatabase();
+  await db.execAsync(`DROP TABLE IF EXISTS contents;`);
 }

@@ -1,22 +1,15 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import { useRoute } from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "@/navigation/types";
 import Container from "@/components/Container";
 import ProgressBar from "@/components/ProgressBar";
 import Button from "@/components/Button";
 import { updateProgress } from "@/database/contentRepository";
-import { Content } from "@/database/contentTypes";
-import { colors } from "@/theme/colors";
 import { spacing } from "@/theme/spacing";
 import { radius } from "@/theme/radius";
-
-type DetailsScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  "Detalhes"
->;
+import { useTheme } from "@/theme/useTheme";
 
 export default function DetailsScreen() {
+  const { theme } = useTheme();
   const route = useRoute();
   const { content } = route.params as any;
 
@@ -29,16 +22,16 @@ export default function DetailsScreen() {
     <Container>
       <Image source={{ uri: content.poster ?? "" }} style={styles.poster} />
 
-      <Text style={styles.title}>{content.title}</Text>
+      <Text style={[styles.title, { color: theme.text }]}>{content.title}</Text>
 
-      <Text style={styles.info}>
+      <Text style={[styles.info, { color: theme.textSecondary }]}>
         {content.platform} • {content.type}
       </Text>
 
       <View style={styles.section}>
-        <Text style={{ color: colors.text }}>Temporada: {content.season}</Text>
-        <Text style={{ color: colors.text }}>Episódio: {content.episode}</Text>
-        <Text style={{ color: colors.text }}>
+        <Text style={{ color: theme.text }}>Temporada: {content.season}</Text>
+        <Text style={{ color: theme.text }}>Episódio: {content.episode}</Text>
+        <Text style={{ color: theme.text }}>
           Duração: {content.duration} min
         </Text>
       </View>
@@ -62,13 +55,11 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 22,
-    fontWeight: "700",
+    fontWeight: "800",
     marginBottom: spacing.sm,
-    color: colors.text,
   },
 
   info: {
-    color: colors.textSecondary,
     marginBottom: spacing.md,
   },
 

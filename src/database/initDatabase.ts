@@ -16,7 +16,9 @@ export async function initDatabase() {
         progress INTEGER DEFAULT 0,
         status TEXT,
         rating INTEGER,
-        poster TEXT
+        poster TEXT,
+        created_at TEXT,
+        updated_at TEXT
       );
     `);
 
