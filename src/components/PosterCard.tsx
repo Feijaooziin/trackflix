@@ -1,18 +1,27 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { radius } from "@/theme/radius";
 import { colors } from "@/theme/colors";
+import ProgressBar from "@/components/ProgressBar";
 
 interface PosterCardProps {
   title: string;
   poster: string;
+  progress?: number;
+  onPress?: () => void;
 }
 
-export default function PosterCard({ title, poster }: PosterCardProps) {
+export default function PosterCard({
+  title,
+  poster,
+  progress,
+  onPress,
+}: PosterCardProps) {
   return (
-    <View style={styles.card}>
-      <Image source={{ uri: poster }} style={styles.image} />
+    <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.7}>
+      <Image source={{ uri: poster }} style={styles.poster} />
       <Text style={styles.title}>{title}</Text>
-    </View>
+      {progress !== undefined && <ProgressBar progress={progress} />}
+    </TouchableOpacity>
   );
 }
 
@@ -21,7 +30,7 @@ const styles = StyleSheet.create({
     width: 120,
   },
 
-  image: {
+  poster: {
     width: "100%",
     height: 180,
     borderRadius: radius.md,

@@ -10,7 +10,7 @@ interface FABProps {
 export default function FAB({ onPress }: FABProps) {
   return (
     <TouchableOpacity style={styles.fab} onPress={onPress}>
-      <Ionicons name="add" size={28} color="#fff" />
+      <Ionicons name="add" size={32} color="#fff" />
     </TouchableOpacity>
   );
 }
