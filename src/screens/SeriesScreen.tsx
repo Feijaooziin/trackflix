@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "@/navigation/types";
-import { drop, getContents } from "@/database/contentRepository";
+import { drop, getContents, getSeries } from "@/database/contentRepository";
 import { Content } from "@/database/contentTypes";
 import { spacing } from "@/theme/spacing";
 import PosterCard from "@/components/PosterCard";
@@ -19,7 +19,7 @@ type HomeScreenNavigationProp = NativeStackNavigationProp<
   "Main"
 >;
 
-export default function HomeScreen() {
+export default function SeriesScreen() {
   const { theme } = useTheme();
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const [contents, setContents] = useState<Content[]>([]);
@@ -29,7 +29,7 @@ export default function HomeScreen() {
   }, []);
 
   async function loadContents() {
-    const data = await getContents();
+    const data = await getSeries();
     setContents(data);
   }
 
@@ -53,7 +53,11 @@ export default function HomeScreen() {
         </View>
       </ScrollView>
 
-      <FAB onPress={() => navigation.navigate("Adicionar" as never)} />
+      <FAB
+        onPress={() =>
+          navigation.navigate("Adicionar", { type: "series" } as any)
+        }
+      />
     </Container>
   );
 }

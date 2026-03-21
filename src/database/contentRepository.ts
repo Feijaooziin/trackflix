@@ -36,6 +36,16 @@ export async function getContents(): Promise<Content[]> {
   return result;
 }
 
+export async function getSeries() {
+  const data = await getContents();
+  return data.filter((item) => item.type === "series");
+}
+
+export async function getMovies() {
+  const data = await getContents();
+  return data.filter((item) => item.type === "movie");
+}
+
 export async function updateProgress(id: number, progress: number) {
   const db = await getDatabase();
 

@@ -3,9 +3,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
-import TestScreen from "@/screens/TestScreen";
-import HomeScreen from "@/screens/HomeScreen";
-import WatchingScreen from "@/screens/WatchingScreen";
+import MoviesScreen from "@/screens/MoviesScreen";
+import SeriesScreen from "@/screens/SeriesScreen";
 import WatchedScreen from "@/screens/WatchedScreen";
 import SettingsScreen from "@/screens/SettingsScreen";
 import DetailsScreen from "@/screens/DetailsScreen";
@@ -21,23 +20,23 @@ function Tabs() {
         tabBarIcon: ({ size, color }) => {
           let iconName: any;
 
-          if (route.name === "Home") iconName = "home";
-          else if (route.name === "Assistindo") iconName = "play-circle";
-          else if (route.name === "Assistidos") iconName = "checkmark-circle";
-          else if (route.name === "Configurações") iconName = "settings";
-          else if (route.name === "Testes") iconName = "flask";
+          if (route.name === "Filmes") iconName = "film-outline";
+          else if (route.name === "Séries") iconName = "tv-outline";
+          else if (route.name === "Assistidos")
+            iconName = "checkmark-circle-outline";
+          else if (route.name === "Configurações")
+            iconName = "settings-outline";
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
 
         tabBarActiveTintColor: "#E50914",
         tabBarInactiveTintColor: "#999",
-        headerShown: false,
+        // headerShown: false,
       })}
     >
-      <Tab.Screen name="Testes" component={TestScreen} />
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Assistindo" component={WatchingScreen} />
+      <Tab.Screen name="Filmes" component={MoviesScreen} />
+      <Tab.Screen name="Séries" component={SeriesScreen} />
       <Tab.Screen name="Assistidos" component={WatchedScreen} />
       <Tab.Screen name="Configurações" component={SettingsScreen} />
     </Tab.Navigator>

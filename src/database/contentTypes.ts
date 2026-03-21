@@ -5,8 +5,8 @@ export interface Content {
   title: string;
   type?: string;
   platform?: string;
-  season?: number;
-  episode?: number;
+  season?: number | null;
+  episode?: number | null;
   duration?: number;
   progress?: number;
   status?: ContentStatus;

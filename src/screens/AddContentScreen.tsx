@@ -9,14 +9,19 @@ import {
   StyleSheet,
 } from "react-native";
 
+import { useRoute } from "@react-navigation/native";
+
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 
-import { searchMovies, getPosterUrl } from "@/services/tmdbService";
+import {
+  searchMovies,
+  getPosterUrl,
+  searchSeries,
+} from "@/services/tmdbService";
 import { addContent } from "@/database/contentRepository";
 
 import { spacing } from "@/theme/spacing";
-import { colors } from "@/theme/colors";
 import { useTheme } from "@/theme/useTheme";
 
 export default function AddContentScreen() {
@@ -26,6 +31,9 @@ export default function AddContentScreen() {
   const [selected, setSelected] = useState<any | null>(null);
   const [platform, setPlatform] = useState("");
 
+  const route = useRoute();
+  const { type } = route.params as { type: "movie" | "series" };
+
   async function handleSearch(text: string) {
     setQuery(text);
 
@@ -34,7 +42,13 @@ export default function AddContentScreen() {
       return;
     }
 
-    const data = await searchMovies(text);
+    let data;
+
+    if (type === "movie") {
+      data = await searchMovies(text);
+    } else {
+      data = await searchSeries(text);
+    }
 
     setResults(data);
   }
@@ -47,14 +61,16 @@ export default function AddContentScreen() {
 
     await addContent({
       title: selected.title || selected.name,
-      type: isSeries ? "series" : "movie",
+      type: type,
       platform: platform,
       poster: getPosterUrl(selected.poster_path),
       progress: 0,
       status: "watching",
-      season: isSeries ? (selected.season_number ?? null) : null,
-      episode: isSeries ? (selected.episode_number ?? null) : null,
-      duration: selected.runtime ?? selected.episode_runtime ?? null,
+      season: type === "series" ? 1 : null,
+      episode: type === "series" ? 1 : null,
+      duration:
+        selected.runtime ??
+        (selected.episode_runtime ? selected.episode_runtime[0] : null),
       rating: selected.vote_average ?? null,
     });
 
@@ -68,7 +84,7 @@ export default function AddContentScreen() {
   return (
     <Container>
       <TextInput
-        placeholder="Buscar filme ou série..."
+        placeholder={type === "series" ? "Buscar Série..." : "Buscar Filme..."}
         placeholderTextColor="#999"
         value={query}
         onChangeText={handleSearch}
