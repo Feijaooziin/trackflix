@@ -30,7 +30,7 @@ export async function getContents(): Promise<Content[]> {
 
   const result = await db.getAllAsync<Content>(`
     SELECT * FROM contents
-    ORDER BY id DESC
+    ORDER BY updated_at DESC
   `);
 
   return result;
