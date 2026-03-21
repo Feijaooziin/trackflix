@@ -7,9 +7,11 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  Keyboard,
+  Modal,
 } from "react-native";
-
 import { useRoute } from "@react-navigation/native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import Container from "@/components/Container";
 import Button from "@/components/Button";
@@ -30,18 +32,22 @@ export default function AddContentScreen() {
   const [results, setResults] = useState<any[]>([]);
   const [selected, setSelected] = useState<any | null>(null);
   const [platform, setPlatform] = useState("");
+  const [showPlatformModal, setShowPlatformModal] = useState(false);
+
+  const platforms = [
+    { name: "Netflix", icon: "netflix", color: "#E50914" },
+    { name: "Prime Video", icon: "play-circle-outline", color: "#00A8E1" },
+    { name: "Disney+", icon: "castle", color: "#113CCF" },
+    { name: "HBO Max", icon: "television", color: "#5A2D82" },
+    { name: "Apple TV+", icon: "apple", color: "#555555" },
+    { name: "Outra", icon: "skull-crossbones-outline", color: "#A1A1A1" },
+  ];
 
   const route = useRoute();
   const { type } = route.params as { type: "movie" | "series" };
 
   async function handleSearch(text: string) {
     setQuery(text);
-
-    if (text.length < 2) {
-      setResults([]);
-      return;
-    }
-
     let data;
 
     if (type === "movie") {
@@ -97,7 +103,11 @@ export default function AddContentScreen() {
         renderItem={({ item }) => (
           <TouchableOpacity
             style={styles.resultItem}
-            onPress={() => setSelected(item)}
+            onPress={() => {
+              Keyboard.dismiss();
+              setSelected(item);
+              setShowPlatformModal(true);
+            }}
           >
             <Image
               source={{ uri: getPosterUrl(item.poster_path) }}
@@ -115,20 +125,55 @@ export default function AddContentScreen() {
             Selecionado: {selected.title || selected.name}
           </Text>
 
-          <TextInput
-            placeholder="Plataforma (Netflix, Prime...)"
-            placeholderTextColor="#999"
-            value={platform}
-            onChangeText={setPlatform}
-            style={[
-              styles.input,
-              { color: theme.text, borderColor: theme.border },
-            ]}
-          />
+          <TouchableOpacity
+            style={[styles.input, { borderColor: theme.border }]}
+            onPress={() => setShowPlatformModal(true)}
+          >
+            <Text style={{ color: platform ? theme.text : "#999" }}>
+              {platform || "Selecionar plataforma"}
+            </Text>
+          </TouchableOpacity>
 
           <Button title="Salvar" onPress={handleSave} />
         </View>
       )}
+
+      <Modal visible={showPlatformModal} transparent animationType="fade">
+        <View style={styles.modalOverlay}>
+          <View
+            style={[styles.modalBox, { backgroundColor: theme.background }]}
+          >
+            <Text style={{ color: theme.text, marginBottom: 12 }}>
+              Escolha a plataforma
+            </Text>
+
+            {platforms.map((item) => (
+              <TouchableOpacity
+                key={item.name}
+                style={styles.platformItem}
+                onPress={() => {
+                  setPlatform(item.name);
+                  setShowPlatformModal(false);
+                }}
+              >
+                <View style={styles.platformRow}>
+                  <MaterialCommunityIcons
+                    name={item.icon as any}
+                    size={32}
+                    color={item.color}
+                  />
+
+                  <Text
+                    style={{ color: theme.text, marginLeft: 12, fontSize: 18 }}
+                  >
+                    {item.name}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      </Modal>
     </Container>
   );
 }
@@ -155,5 +200,29 @@ const styles = StyleSheet.create({
 
   selected: {
     marginTop: spacing.lg,
+  },
+
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  modalBox: {
+    width: "80%",
+    padding: 20,
+    borderRadius: 12,
+  },
+
+  platformItem: {
+    paddingVertical: 12,
+    borderBottomWidth: 1,
+    borderColor: "#ddd",
+  },
+
+  platformRow: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });

@@ -8,7 +8,7 @@ export async function addContent(content: Content) {
     `
     INSERT INTO contents
     (title, type, platform, season, episode, duration, progress, status, rating, poster, created_at, updated_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATETIME('now'), DATETIME('now'))
+    VALUES (?, ?, ?, ?, ?, 0, ?, ?, ?, ?, DATETIME('now'), DATETIME('now'))
     `,
     [
       content.title,
