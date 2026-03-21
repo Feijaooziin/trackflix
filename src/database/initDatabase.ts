@@ -17,8 +17,7 @@ export async function initDatabase() {
         status TEXT,
         rating INTEGER,
         poster TEXT,
-        created_at TEXT,
-        updated_at TEXT
+        c
       );
     `);
 

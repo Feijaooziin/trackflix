@@ -7,8 +7,8 @@ export async function addContent(content: Content) {
   await db.runAsync(
     `
     INSERT INTO contents
-    (title, type, platform, season, episode, duration, progress, status, rating, poster)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATETIME('now'), DATETIME('now')cc)
+    (title, type, platform, season, episode, duration, progress, status, rating, poster, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, DATETIME('now'), DATETIME('now'))
     `,
     [
       content.title,
